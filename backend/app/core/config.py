@@ -2,6 +2,9 @@ from pathlib import Path
 from pydantic_settings import BaseSettings
 
 
+ENV_FILE = Path(__file__).resolve().parents[2] / ".env"
+
+
 class Settings(BaseSettings):
     DATABASE_URL: str
     SECRET_KEY: str = "change-me-in-production-use-long-random-string"
@@ -38,7 +41,7 @@ class Settings(BaseSettings):
         return base / self.MODEL_PATH
 
     class Config:
-        env_file = ".env"
+        env_file = ENV_FILE
         env_file_encoding = "utf-8"
         extra = "ignore"
 
