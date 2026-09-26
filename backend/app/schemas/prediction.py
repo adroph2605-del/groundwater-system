@@ -49,3 +49,4 @@ class PredictionOut(BaseModel):
 
     class Config:
         from_attributes = True
+PredictionResponse = PredictionOut
