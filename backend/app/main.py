@@ -22,6 +22,13 @@ app.add_middleware(
 
 app.include_router(api_router)
 
+@app.on_event("startup")
+def on_startup():
+    try:
+        from ml.download_models import download_models
+        download_models()
+    except Exception as e:
+        print("[startup] model download skipped:", e)
 
 @app.get("/")
 def root():
